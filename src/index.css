@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+*:before,
+*:after,
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+html {
+  scroll-behavior: smooth;
+}
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pacifico&family=Pathway+Gothic+One&family=Permanent+Marker&family=Poppins:wght@200;400&family=Raleway:wght@100;200;600&family=Righteous&family=Roboto:wght@100;700&family=Rock+Salt&family=Sacramento&family=Sora:wght@100;300&display=swap");
+:root {
+  --color-white: #f0f5f9;
+  --color-dull-white: #c9d6df;
+  --color-grey: #52616b;
+  --color-black: #1e2022;
+  --color-primary-white: #ffff;
+  --color-primary-black: #000;
+  --color-red: #ff4c29;
+
+  --box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  --std-line-height: 2.5rem;
+  --std-letter-space: 0.8rem;
+
+  --family-heading: "Raleway", sans-serif;
+  --family-sub-heading: "Sora", sans-serif;
+  --family-body: "Poppins", sans-serif;
+  --family-marker: "Permanent Marker", cursive;
+
+  --size-primary-heading: 6rem;
+  --size-sub-heading: 2rem;
+  --size-body: 1rem;
+  --size-form-header: 0.8rem;
+}
+
+body {
+  background-color: var(--color-dull-white);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.btn {
+  border: 0;
+  outline: 0;
+  padding: 16px 30px;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  font-size: var(--size-body);
+  cursor: pointer;
+  font-family: var(--family-body);
+  border-radius: 30px;
+  box-shadow: var(--box-shadow);
+}
+.hero-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  width: 240px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container .box {
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow);
+  width: 30%;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--size-sub-heading);
+  color: var(--color-black);
+  font-family: var(--family-marker);
+  margin: 0.2rem;
+  cursor: pointer;
+}
+.box-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+span {
+  width: 90%;
+  height: 2px;
+  background-color: var(--color-black);
+  transition: 0.8s;
+  transform-origin: left;
+  transform: scale(0);
+}
