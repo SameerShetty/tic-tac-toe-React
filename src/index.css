@@ -71,6 +71,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 }
 .container .box {
   background-color: var(--color-white);
@@ -98,7 +99,8 @@ span {
   width: 90%;
   height: 2px;
   background-color: var(--color-black);
-  transition: 0.8s;
+  transition: 0.65s;
   transform-origin: left;
   transform: scale(0);
+  position: absolute;
 }

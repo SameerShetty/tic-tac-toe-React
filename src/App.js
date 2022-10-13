@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./index.css";
 
 function App() {
+  const bar = document.getElementById("bar");
   // const [iscomputer, setcomputer] = useState(false);
   // const [banner, setbanner] = useState(true);
   const [boxes, setboxes] = useState([]);
@@ -23,56 +24,79 @@ function App() {
         [i]: v,
       };
     });
-    if (checkwinner()) console.log(true);
-    else console.log(false);
+    checkwinner();
   }
   function checkwinner() {
     if (
       (boxes[0] === "X" && boxes[1] === "X" && boxes[2] === "X") ||
       (boxes[0] === "O" && boxes[1] === "O" && boxes[2] === "O")
-    )
-      return true;
-    else if (
+    ) {
+      bar.style.transform = "scale(1)";
+      bar.style.top = "24%";
+      bar.style.transformOrigin = "left";
+    } else if (
       (boxes[3] === "X" && boxes[4] === "X" && boxes[5] === "X") ||
       (boxes[3] === "O" && boxes[4] === "O" && boxes[5] === "O")
-    )
-      return true;
-    else if (
+    ) {
+      bar.style.transform = "scale(1)";
+      bar.style.transformOrigin = "left";
+      bar.style.top = "50%";
+    } else if (
       (boxes[6] === "X" && boxes[7] === "X" && boxes[8] === "X") ||
       (boxes[6] === "O" && boxes[7] === "O" && boxes[8] === "O")
-    )
-      return true;
-    else if (
+    ) {
+      bar.style.transform = "scale(1)";
+      bar.style.transformOrigin = "left";
+      bar.style.top = "75%";
+    } else if (
       (boxes[0] === "X" && boxes[3] === "X" && boxes[6] === "X") ||
       (boxes[0] === "O" && boxes[3] === "O" && boxes[6] === "O")
-    )
-      return true;
-    else if (
+    ) {
+      bar.style.transform = "scale(1)";
+      bar.style.transformOrigin = "top";
+      bar.style.top = "13%";
+      bar.style.left = "17%";
+      bar.style.transform = "rotate(90deg)";
+    } else if (
       (boxes[0] === "X" && boxes[4] === "X" && boxes[8] === "X") ||
       (boxes[0] === "O" && boxes[4] === "O" && boxes[8] === "O")
-    )
-      return true;
-    else if (
+    ) {
+      bar.style.transform = "scale(1)";
+      bar.style.top = "50%";
+      bar.style.transformOrigin = "top";
+      bar.style.transform = "rotate(45deg)";
+    } else if (
       (boxes[1] === "X" && boxes[4] === "X" && boxes[7] === "X") ||
       (boxes[1] === "O" && boxes[4] === "O" && boxes[7] === "O")
-    )
-      return true;
-    else if (
+    ) {
+      bar.style.transform = "scale(1)";
+      bar.style.top = "13%";
+      bar.style.left = "50%";
+      bar.style.transformOrigin = "top";
+      bar.style.transform = "rotate(90deg)";
+    } else if (
       (boxes[2] === "X" && boxes[5] === "X" && boxes[8] === "X") ||
       (boxes[2] === "O" && boxes[5] === "O" && boxes[8] === "O")
-    )
-      return true;
-    else if (
+    ) {
+      bar.style.transform = "scale(1)";
+      bar.style.top = "13%";
+      bar.style.left = "83%";
+      bar.style.transformOrigin = "top";
+      bar.style.transform = "rotate(90deg)";
+    } else if (
       (boxes[2] === "X" && boxes[4] === "X" && boxes[6] === "X") ||
       (boxes[2] === "O" && boxes[4] === "O" && boxes[6] === "O")
-    )
-      return true;
-    else return false;
+    ) {
+      bar.style.transform = "scale(1)";
+      bar.style.top = "50%";
+      bar.style.transformOrigin = "top";
+      bar.style.transform = "rotate(-45deg)";
+    } else return false;
   }
   return (
     <div className="hero-wrapper">
       <div className="container">
-        <span style={{ transform: item ? "scale(1)" : "scale(0)" }}></span>
+        <span id="bar"></span>
         <div className="box-row">
           <div
             className="box"
