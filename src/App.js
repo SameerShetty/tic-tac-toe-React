@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
+import { IoMdPerson } from "react-icons/io";
+import { BsLaptop } from "react-icons/bs";
 
 function App() {
   const bar = document.getElementById("bar");
-  // const [iscomputer, setcomputer] = useState(false);
-  // const [banner, setbanner] = useState(true);
+  const [iscomputer, setcomputer] = useState(false);
+  const [banner, setbanner] = useState(true);
   const [boxes, setboxes] = useState([]);
   const [item, setitem] = useState();
+  useEffect(() => {}, []);
+  useEffect(() => {
+    checkwinner();
+  }, [boxes]);
 
   function drawXO(e) {
     const i = e.target.getAttribute("data-arg");
@@ -24,8 +30,8 @@ function App() {
         [i]: v,
       };
     });
-    checkwinner();
   }
+
   function checkwinner() {
     if (
       (boxes[0] === "X" && boxes[1] === "X" && boxes[2] === "X") ||
@@ -53,7 +59,6 @@ function App() {
       (boxes[0] === "O" && boxes[3] === "O" && boxes[6] === "O")
     ) {
       bar.style.transform = "scale(1)";
-      bar.style.transformOrigin = "top";
       bar.style.top = "13%";
       bar.style.left = "17%";
       bar.style.transform = "rotate(90deg)";
@@ -63,7 +68,6 @@ function App() {
     ) {
       bar.style.transform = "scale(1)";
       bar.style.top = "50%";
-      bar.style.transformOrigin = "top";
       bar.style.transform = "rotate(45deg)";
     } else if (
       (boxes[1] === "X" && boxes[4] === "X" && boxes[7] === "X") ||
@@ -72,7 +76,6 @@ function App() {
       bar.style.transform = "scale(1)";
       bar.style.top = "13%";
       bar.style.left = "50%";
-      bar.style.transformOrigin = "top";
       bar.style.transform = "rotate(90deg)";
     } else if (
       (boxes[2] === "X" && boxes[5] === "X" && boxes[8] === "X") ||
@@ -81,7 +84,6 @@ function App() {
       bar.style.transform = "scale(1)";
       bar.style.top = "13%";
       bar.style.left = "83%";
-      bar.style.transformOrigin = "top";
       bar.style.transform = "rotate(90deg)";
     } else if (
       (boxes[2] === "X" && boxes[4] === "X" && boxes[6] === "X") ||
@@ -89,12 +91,45 @@ function App() {
     ) {
       bar.style.transform = "scale(1)";
       bar.style.top = "50%";
-      bar.style.transformOrigin = "top";
       bar.style.transform = "rotate(-45deg)";
     } else return false;
   }
+
   return (
     <div className="hero-wrapper">
+      <div
+        className="modal-layer"
+        style={{
+          display: "flex",
+          width: "100%",
+          position: "absolute",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          top: "0",
+          left: "0",
+          minHeight: "100vh",
+          zIndex: "99",
+          backgroundColor: "#c9d6df",
+        }}
+      >
+        <div>
+          <h1>tic-tac-toe</h1>
+        </div>
+        <div>
+          <div>
+            {" "}
+            <h3 onClick={() => setcomputer(false)}>
+              vs <IoMdPerson className="icon" />
+            </h3>
+          </div>
+          <div>
+            <h3 onClick={() => setcomputer(true)}>
+              vs <BsLaptop className="icon" />
+            </h3>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <span id="bar"></span>
         <div className="box-row">

@@ -73,6 +73,28 @@ body {
   flex-direction: column;
   position: relative;
 }
+.modal-layer h1 {
+  font-size: var(--size-primary-heading);
+  font-family: var(--family-heading);
+  color: var(--color-black);
+}
+.modal-layer h3 {
+  cursor: pointer;
+  font-size: var(--size-sub-heading);
+  font-family: var(--family-sub-heading);
+  color: var(--color-grey);
+}
+.modal-layer div {
+  padding: 1rem;
+}
+.modal-layer h3:hover,
+.modal-layer h3:active {
+  color: var(--color-black);
+}
+.icon {
+  vertical-align: middle;
+  margin: 0 1rem;
+}
 .container .box {
   background-color: var(--color-white);
   box-shadow: var(--box-shadow);
@@ -99,7 +121,8 @@ span {
   width: 90%;
   height: 2px;
   background-color: var(--color-black);
-  transition: 0.65s;
+  transition-delay: 0.65s;
+  transition: transform 0.65s;
   transform-origin: left;
   transform: scale(0);
   position: absolute;
