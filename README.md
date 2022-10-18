@@ -1,4 +1,5 @@
 # tic-tac-toe-React-App
+## The result page fires as soon as we end the game.
 
 ![alt text](Screenshot/home.png)
 
