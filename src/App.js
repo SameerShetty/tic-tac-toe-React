@@ -1,20 +1,32 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import { IoMdPerson } from "react-icons/io";
-import { BsLaptop } from "react-icons/bs";
+
+var c = 0;
 
 function App() {
-  const bar = document.getElementById("bar");
-  const [iscomputer, setcomputer] = useState(false);
-  const [banner, setbanner] = useState(true);
+  const [winner, setWinner] = useState("");
   const [boxes, setboxes] = useState([]);
   const [item, setitem] = useState();
-  useEffect(() => {}, []);
+  const [isdisplay, setDisplay] = useState("");
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
-    checkwinner();
+    if (checkwinner()) {
+      if (item === "X") {
+        setWinner("Player X is the winner !");
+
+        setDisplay(true);
+      } else {
+        setWinner("Player O is the winner !");
+        setDisplay(true);
+      }
+    }
   }, [boxes]);
 
   function drawXO(e) {
+    c++;
     const i = e.target.getAttribute("data-arg");
     let v;
     if (item === "X") {
@@ -30,107 +42,73 @@ function App() {
         [i]: v,
       };
     });
+    if (c === 9) {
+      setWinner("Its a draw !");
+      setDisplay(true);
+    }
   }
 
   function checkwinner() {
     if (
       (boxes[0] === "X" && boxes[1] === "X" && boxes[2] === "X") ||
       (boxes[0] === "O" && boxes[1] === "O" && boxes[2] === "O")
-    ) {
-      bar.style.transform = "scale(1)";
-      bar.style.top = "24%";
-      bar.style.transformOrigin = "left";
-    } else if (
+    )
+      return true;
+    else if (
       (boxes[3] === "X" && boxes[4] === "X" && boxes[5] === "X") ||
       (boxes[3] === "O" && boxes[4] === "O" && boxes[5] === "O")
-    ) {
-      bar.style.transform = "scale(1)";
-      bar.style.transformOrigin = "left";
-      bar.style.top = "50%";
-    } else if (
+    )
+      return true;
+    else if (
       (boxes[6] === "X" && boxes[7] === "X" && boxes[8] === "X") ||
       (boxes[6] === "O" && boxes[7] === "O" && boxes[8] === "O")
-    ) {
-      bar.style.transform = "scale(1)";
-      bar.style.transformOrigin = "left";
-      bar.style.top = "75%";
-    } else if (
+    )
+      return true;
+    else if (
       (boxes[0] === "X" && boxes[3] === "X" && boxes[6] === "X") ||
       (boxes[0] === "O" && boxes[3] === "O" && boxes[6] === "O")
-    ) {
-      bar.style.transform = "scale(1)";
-      bar.style.top = "13%";
-      bar.style.left = "17%";
-      bar.style.transform = "rotate(90deg)";
-    } else if (
+    )
+      return true;
+    else if (
       (boxes[0] === "X" && boxes[4] === "X" && boxes[8] === "X") ||
       (boxes[0] === "O" && boxes[4] === "O" && boxes[8] === "O")
-    ) {
-      bar.style.transform = "scale(1)";
-      bar.style.top = "50%";
-      bar.style.transform = "rotate(45deg)";
-    } else if (
+    )
+      return true;
+    else if (
       (boxes[1] === "X" && boxes[4] === "X" && boxes[7] === "X") ||
       (boxes[1] === "O" && boxes[4] === "O" && boxes[7] === "O")
-    ) {
-      bar.style.transform = "scale(1)";
-      bar.style.top = "13%";
-      bar.style.left = "50%";
-      bar.style.transform = "rotate(90deg)";
-    } else if (
+    )
+      return true;
+    else if (
       (boxes[2] === "X" && boxes[5] === "X" && boxes[8] === "X") ||
       (boxes[2] === "O" && boxes[5] === "O" && boxes[8] === "O")
-    ) {
-      bar.style.transform = "scale(1)";
-      bar.style.top = "13%";
-      bar.style.left = "83%";
-      bar.style.transform = "rotate(90deg)";
-    } else if (
+    )
+      return true;
+    else if (
       (boxes[2] === "X" && boxes[4] === "X" && boxes[6] === "X") ||
       (boxes[2] === "O" && boxes[4] === "O" && boxes[6] === "O")
-    ) {
-      bar.style.transform = "scale(1)";
-      bar.style.top = "50%";
-      bar.style.transform = "rotate(-45deg)";
-    } else return false;
+    )
+      return true;
+    else return false;
   }
 
   return (
     <div className="hero-wrapper">
       <div
         className="modal-layer"
-        style={{
-          display: "flex",
-          width: "100%",
-          position: "absolute",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          top: "0",
-          left: "0",
-          minHeight: "100vh",
-          zIndex: "99",
-          backgroundColor: "#c9d6df",
-        }}
+        style={{ display: isdisplay ? "flex" : "none" }}
       >
         <div>
-          <h1>tic-tac-toe</h1>
+          <h1>{winner}</h1>
         </div>
-        <div>
-          <div>
-            {" "}
-            <h3 onClick={() => setcomputer(false)}>
-              vs <IoMdPerson className="icon" />
-            </h3>
-          </div>
-          <div>
-            <h3 onClick={() => setcomputer(true)}>
-              vs <BsLaptop className="icon" />
-            </h3>
-          </div>
-        </div>
+        <button className="btn" onClick={refreshPage}>
+          Play again
+        </button>
       </div>
-      <div className="container">
+      <div
+        className="container"
+        style={{ display: !isdisplay ? "flex" : "none" }}
+      >
         <span id="bar"></span>
         <div className="box-row">
           <div
@@ -143,6 +121,7 @@ function App() {
           </div>
           <div
             className="box"
+            checked="false"
             onClick={drawXO}
             data-arg="1"
             style={{ color: boxes[1] === "O" ? "#ff4c29" : "#1e2022" }}
